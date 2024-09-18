@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import './App.css';
 import { useState } from 'react';
+import Quiz from './components/Quiz';
 
 function App() {
   const [questionNumber, setQuestionNumber] = useState(1);
@@ -32,7 +33,9 @@ function App() {
         <div className="top">
           <div className="timer">30</div>
         </div>
-        <div className="bottom">Question and answer</div>
+        <div className="bottom">
+          <Quiz />
+        </div>
       </div>
 
       {/* Amount of Money */}
