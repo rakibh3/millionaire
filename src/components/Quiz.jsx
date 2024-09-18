@@ -4,12 +4,7 @@ import play from '../sounds/play.mp3';
 import correct from '../sounds/correct.mp3';
 import wrong from '../sounds/wrong.mp3';
 
-const Quiz = ({
-  quizQuestion,
-  setTimeOut,
-  questionNumber,
-  setQuestionNumber,
-}) => {
+const Quiz = ({ quizQuestion, setStop, questionNumber, setQuestionNumber }) => {
   const [question, setQuestion] = useState(null);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [className, setClassName] = useState('answer');
@@ -48,7 +43,7 @@ const Quiz = ({
       } else {
         wrongAnswer();
         delay(1000, () => {
-          setTimeOut(true);
+          setStop(true);
         });
       }
     });
@@ -58,9 +53,9 @@ const Quiz = ({
     <div className="quiz">
       <div className="question">{question?.question}</div>
       <div className="answers">
-        {question?.answers.map((answer) => (
+        {question?.answers.map((answer, index) => (
           <div
-            key={answer.id}
+            key={index + 1}
             className={selectedAnswer === answer ? className : 'answer'}
             onClick={() => !selectedAnswer && handleClick(answer)}
           >

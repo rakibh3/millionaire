@@ -1,12 +1,14 @@
-import { useMemo } from 'react';
 import './App.css';
-import { useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import Quiz from './components/Quiz';
 import quizQuestion from '../src/data/quiz.json';
 
 function App() {
+  const [username, setUsername] = useState(null);
   const [questionNumber, setQuestionNumber] = useState(1);
-  const [timeOut, setTimeOut] = useState(false);
+  const [stop, setStop] = useState(false);
+  const [earned, setEarned] = useState('$ 0');
+
   const moneyPyramid = useMemo(
     () =>
       [
@@ -28,21 +30,33 @@ function App() {
       ].reverse(),
     []
   );
+  useEffect(() => {
+    questionNumber > 1 &&
+      setEarned(
+        moneyPyramid.find((money) => money.id === questionNumber - 1).amount
+      );
+  }, [questionNumber, moneyPyramid]);
 
   return (
     <div className="app">
       <div className="main">
-        <div className="top">
-          <div className="timer">30</div>
-        </div>
-        <div className="bottom">
-          <Quiz
-            quizQuestion={quizQuestion}
-            setTimeOut={setTimeOut}
-            questionNumber={questionNumber}
-            setQuestionNumber={setQuestionNumber}
-          />
-        </div>
+        {stop ? (
+          <h1 className="endText">You earned: {earned}</h1>
+        ) : (
+          <>
+            <div className="top">
+              <div className="timer">30</div>
+            </div>
+            <div className="bottom">
+              <Quiz
+                quizQuestion={quizQuestion}
+                setStop={setStop}
+                questionNumber={questionNumber}
+                setQuestionNumber={setQuestionNumber}
+              />
+            </div>
+          </>
+        )}
       </div>
 
       {/* Amount of Money */}
