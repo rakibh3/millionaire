@@ -2,9 +2,11 @@ import { useMemo } from 'react';
 import './App.css';
 import { useState } from 'react';
 import Quiz from './components/Quiz';
+import quizQuestion from '../src/data/quiz.json';
 
 function App() {
   const [questionNumber, setQuestionNumber] = useState(1);
+  const [timeOut, setTimeOut] = useState(false);
   const moneyPyramid = useMemo(
     () =>
       [
@@ -34,7 +36,12 @@ function App() {
           <div className="timer">30</div>
         </div>
         <div className="bottom">
-          <Quiz />
+          <Quiz
+            quizQuestion={quizQuestion}
+            setTimeOut={setTimeOut}
+            questionNumber={questionNumber}
+            setQuestionNumber={setQuestionNumber}
+          />
         </div>
       </div>
 
