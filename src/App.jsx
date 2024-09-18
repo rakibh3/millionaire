@@ -1,9 +1,10 @@
 import './App.css';
 function App() {
   return (
-    <>
-      <h1>Hello World</h1>
-    </>
+    <div className="app">
+      <div className="main">Main</div>
+      <div className="pyramid">Money</div>
+    </div>
   );
 }
 

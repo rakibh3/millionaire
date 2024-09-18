@@ -1,0 +1,22 @@
+.app {
+  height: 100vh;
+  display: flex;
+  color: white;
+  background-color: #020230;
+}
+
+.main {
+  width: 75%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #020230),
+    url('https://i.ytimg.com/vi/yQbJRGs0fy8/maxresdefault.jpg') center;
+  display: flex;
+  flex-direction: column;
+}
+
+.pyramid {
+  width: 25%;
+  background-color: #020230;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
