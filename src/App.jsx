@@ -28,7 +28,14 @@ function App() {
 
   return (
     <div className="app">
-      <div className="main">Main</div>
+      <div className="main">
+        <div className="top">
+          <div className="timer">30</div>
+        </div>
+        <div className="bottom">Question and answer</div>
+      </div>
+
+      {/* Amount of Money */}
       <div className="pyramid">
         <ul className="monetList">
           {moneyPyramid.map((money) => (
