@@ -4,7 +4,12 @@ import play from '../sounds/play.mp3';
 import correct from '../sounds/correct.mp3';
 import wrong from '../sounds/wrong.mp3';
 
-const Quiz = ({ quizQuestion, setStop, questionNumber, setQuestionNumber }) => {
+const Quiz = ({
+  quizQuestion,
+  setTimeOut,
+  questionNumber,
+  setQuestionNumber,
+}) => {
   const [question, setQuestion] = useState(null);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [className, setClassName] = useState('answer');
@@ -43,7 +48,7 @@ const Quiz = ({ quizQuestion, setStop, questionNumber, setQuestionNumber }) => {
       } else {
         wrongAnswer();
         delay(1000, () => {
-          setStop(true);
+          setTimeOut(true);
         });
       }
     });

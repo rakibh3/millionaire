@@ -8,7 +8,7 @@ import Start from './components/Start';
 function App() {
   const [username, setUsername] = useState(null);
   const [questionNumber, setQuestionNumber] = useState(1);
-  const [stop, setStop] = useState(false);
+  const [timeOut, setTimeOut] = useState(false);
   const [earned, setEarned] = useState('$ 0');
 
   const moneyPyramid = useMemo(
@@ -39,22 +39,27 @@ function App() {
 
   return (
     <div className="app">
-      {username ? (
+      {!username ? (
+        <Start setUsername={setUsername} />
+      ) : (
         <>
           <div className="main">
-            {stop ? (
+            {timeOut ? (
               <h1 className="endText">You earned: {earned}</h1>
             ) : (
               <>
                 <div className="top">
                   <div className="timer">
-                    <Timer setStop={setStop} questionNumber={questionNumber} />
+                    <Timer
+                      setTimeOut={setTimeOut}
+                      questionNumber={questionNumber}
+                    />
                   </div>
                 </div>
                 <div className="bottom">
                   <Quiz
                     quizQuestion={quizQuestion}
-                    setStop={setStop}
+                    setTimeOut={setTimeOut}
                     questionNumber={questionNumber}
                     setQuestionNumber={setQuestionNumber}
                   />
@@ -82,8 +87,6 @@ function App() {
             </ul>
           </div>
         </>
-      ) : (
-        <Start setUsername={setUsername} />
       )}
     </div>
   );
