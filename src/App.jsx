@@ -2,6 +2,7 @@ import './App.css';
 import { useMemo, useState, useEffect } from 'react';
 import Quiz from './components/Quiz';
 import quizQuestion from '../src/data/quiz.json';
+import Timer from './components/Timer';
 
 function App() {
   const [username, setUsername] = useState(null);
@@ -32,9 +33,7 @@ function App() {
   );
   useEffect(() => {
     questionNumber > 1 &&
-      setEarned(
-        moneyPyramid.find((money) => money.id === questionNumber - 1).amount
-      );
+      setEarned(moneyPyramid.find((m) => m.id === questionNumber - 1).amount);
   }, [questionNumber, moneyPyramid]);
 
   return (
@@ -45,7 +44,9 @@ function App() {
         ) : (
           <>
             <div className="top">
-              <div className="timer">30</div>
+              <div className="timer">
+                <Timer setStop={setStop} questionNumber={questionNumber} />
+              </div>
             </div>
             <div className="bottom">
               <Quiz
