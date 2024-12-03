@@ -80,8 +80,8 @@ function App() {
                       : 'moneyListItem'
                   }
                 >
-                  <span className="moneyListItemNumber">{money.id}</span>
-                  <span className="moneyListItemAmount">{money.amount}</span>
+                  <span className="moneyListItemNumber">{money.id}:- </span>
+                  <span className="moneyListItemAmount"> {money.amount}</span>
                 </li>
               ))}
             </ul>
